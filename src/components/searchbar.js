@@ -13,13 +13,22 @@ class SearchBar extends Component {
   render () {
     // always use setState instead of changing by this.state = blah
     return (
-      <div>
-        // input tells state to change
-        <input onChange={event => this.setState({ term: event.target.value})} />
-        Value of the input: {this.state.term}
+      <div className="search-bar">
+
+        <input
+
+          // value changes when the state changes. not
+          value={this.state.term}
+          onChange={event => this.onInputChange(event.target.value)} />
+        {/*Value of the input: {this.state.term}*/}
       </div>
     )
-  };
+  }
+
+  onInputChange(term) {
+    this.setState({term});
+    this.props.onSearchTermChange(term);
+  }
 
   // when we do 'this' always has an event handler
 }
